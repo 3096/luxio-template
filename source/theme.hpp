@@ -1,0 +1,11 @@
+#pragma once
+
+#include "lx/ui/lv_helper.hpp"
+
+namespace theme {
+
+void initialize();
+
+auto createWindow(lv_obj_t* p_parent) -> lv_obj_t*;
+
+}  // namespace theme

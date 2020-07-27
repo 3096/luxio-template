@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+
+# Switch
+*.elf
+*.nso
+*.nro
+*.nsp
+*.nacp
+*.npdm
+
+# Misc.
+build
+debug
+release
