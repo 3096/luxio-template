@@ -46,8 +46,6 @@ void __appInit(void) {
 
     lx::debugInit();
     lx::Overlay::initialize();
-
-    theme::initialize();
 }
 
 void __appExit(void) {

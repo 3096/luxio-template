@@ -1,11 +1,12 @@
 #include "main_screen.hpp"
 
 #include "../theme.hpp"
+#include "lx/ui/lv_helper.hpp"
 
 MainScreen MainScreen::s_instance;
 
 MainScreen::MainScreen() : LOGCONSTRUCT m_basicScreen() {
-    lv_obj_t* p_window = theme::createWindow(getLvScreenObj());
+    lv_obj_t* p_window = lx::ui::lv_win::create(getLvScreenObj(), Theme::getThemeColorBgStyle());
     m_basicScreen.addLvObjPositionUpdater(p_window, lx::ui::lv_win::updateFitParent);
     lv_win_set_title(p_window, "  luxio overlay");
 
@@ -19,11 +20,3 @@ MainScreen::MainScreen() : LOGCONSTRUCT m_basicScreen() {
 }
 
 MainScreen::~MainScreen() {}
-
-void MainScreen::renderScreen() { m_basicScreen.renderScreen(); }
-
-void MainScreen::procFrame() {
-    if (m_basicScreen.returnButtonPressed()) {
-        lx::ui::Controller::stop();
-    }
-}

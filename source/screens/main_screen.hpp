@@ -14,8 +14,11 @@ class MainScreen : public lx::ui::IScreen {
 
     lx::ui::BasicScreenProvider m_basicScreen;
 
-    virtual void renderScreen() override;
-    virtual void procFrame() override;
+    // implement IScreen
+    virtual inline void onMount(lx::ui::IScreen* prevScreen) override { return m_basicScreen.onMount(prevScreen); }
+
+    virtual inline void renderScreen() override { return m_basicScreen.renderScreen(); }
+    virtual inline void procFrame() override { return m_basicScreen.processReturn(); }
 
     virtual inline lv_obj_t* getLvScreenObj() override { return m_basicScreen.getLvScreenObj(); }
     virtual inline lv_group_t* getLvInputGroup() override { return m_basicScreen.getLvInputGroup(); }

@@ -1,11 +1,19 @@
 #pragma once
 
-#include "lx/ui/lv_helper.hpp"
+#include "lvgl.h"
 
-namespace theme {
+class Theme {
+   private:
+    Theme();
+    Theme(const Theme&) = delete;
+    ~Theme();
+    inline static auto& getInstance() {
+        static Theme s_instance;
+        return s_instance;
+    }
 
-void initialize();
+    lv_style_t m_themeColorBgStyle;
 
-auto createWindow(lv_obj_t* p_parent) -> lv_obj_t*;
-
-}  // namespace theme
+   public:
+    static inline auto& getThemeColorBgStyle() { return getInstance().m_themeColorBgStyle; }
+};
