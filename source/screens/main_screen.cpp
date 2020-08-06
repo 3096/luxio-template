@@ -5,7 +5,7 @@
 
 MainScreen MainScreen::s_instance;
 
-MainScreen::MainScreen() : LOGCONSTRUCT m_basicScreen() {
+MainScreen::MainScreen() : LOGCONSTRUCT m_basicScreen(*this) {
     lv_obj_t* p_window = lx::ui::lv_win::create(getLvScreenObj(), Theme::getThemeColorBgStyle());
     m_basicScreen.addLvObjPositionUpdater(p_window, lx::ui::lv_win::updateFitParent);
     lv_win_set_title(p_window, "  luxio overlay");

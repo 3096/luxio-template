@@ -26,12 +26,9 @@ void __libnx_initheap(void) {
 
 void __appInit(void) {
     // Init services
-    Result rc;
     if (R_FAILED(smInitialize())) fatalThrow(MAKERESULT(Module_Libnx, LibnxError_InitFail_SM));
     if (R_FAILED(hidInitialize())) fatalThrow(MAKERESULT(Module_Libnx, LibnxError_InitFail_HID));
     if (R_FAILED(fsInitialize())) fatalThrow(MAKERESULT(Module_Libnx, LibnxError_InitFail_FS));
-    if (R_FAILED(rc = apmInitialize())) fatalThrow(rc);
-    if (R_FAILED(rc = viInitialize(ViServiceType_Manager))) fatalThrow(rc);
     if (R_FAILED(fsdevMountSdmc())) fatalThrow(0x5D);
 
     auto socketConfig = SocketInitConfig{.bsdsockets_version = 1,
@@ -45,7 +42,7 @@ void __appInit(void) {
     TRY_FATAL(socketInitialize(&socketConfig));
 
     lx::debugInit();
-    lx::Overlay::initialize();
+    lx::Overlay::instantiate();
 }
 
 void __appExit(void) {
@@ -53,8 +50,6 @@ void __appExit(void) {
     lx::debugExit();
     socketExit();
     fsdevUnmountAll();
-    viExit();
-    apmExit();
     fsExit();
     hidExit();
     smExit();

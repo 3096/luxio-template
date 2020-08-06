@@ -11,8 +11,13 @@
 	"pool_partition": 2,
 	"is_64_bit": true,
 	"address_space_type": 1,
+	"system_resource_size": "0",
 	"filesystem_access": {
-		"permissions": "0xffffffffffffffff"
+		"permissions": "0xffffffffffffffff",
+		"content_owner_id_min": "0",
+		"content_owner_id_max": "0",
+		"save_data_owner_id_min": "0",
+		"save_data_owner_id_max": "0"
 	},
 	"service_access": [
 		"*"
